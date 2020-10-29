@@ -1,5 +1,6 @@
 import multiprocessing
 import math
+import os
 
 
 def calculo_raices(lista_numeros, lista_raices, suma_total):
@@ -7,7 +8,7 @@ def calculo_raices(lista_numeros, lista_raices, suma_total):
         lista_raices[i] = math.sqrt(numero)
 
     suma_total.value = sum(lista_raices)
-
+    print('ID del proceso en ejecución: {}'.format(os.getpid()))
     print("Las raices de las lista son: {}".format(lista_raices[:]))
     print("La suma de las raices de la lista es: {} ".format(suma_total.value))
 
@@ -20,15 +21,17 @@ if __name__ == "__main__":
     suma_total = multiprocessing.Value('d')
 
     p1 = multiprocessing.Process(target=calculo_raices, args=(lista_numeros, lista_raices, suma_total,))
-    p1.start()
-    print("Resultado en el proceso 1 con ID: {} ".format(p1.pid))
-    p1.join()
-
     p2 = multiprocessing.Process(target=calculo_raices, args=(lista_numeros, lista_raices, suma_total,))
+
+    p1.start()
     p2.start()
-    print("\nResultado en el proceso 2 con ID: {} ".format(p2.pid))
+
+    print("ID del proceso p1: {}".format(p1.pid))
+    print("ID del proceso p2: {}".format(p2.pid))
+
+    p1.join()
     p2.join()
 
-    print("\nResultado en el main: ")
+    print("Resultado en el main: ")
     print("Las raices de las lista son: {}".format(lista_raices[:]))
     print("La suma de las raices de la lista es: {}".format(suma_total.value))

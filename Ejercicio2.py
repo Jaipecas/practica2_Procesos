@@ -10,7 +10,7 @@ def calculo_raices(lista_numeros, lista_raices, suma_total):
     suma_total.value = sum(lista_raices)
     print('ID del proceso en ejecución: {}'.format(os.getpid()))
     print("Las raices de las lista son: {}".format(lista_raices[:]))
-    print("La suma de las raices de la lista es: {} ".format(suma_total.value))
+    print("La suma de las raices de la lista es: {} \n".format(suma_total.value))
 
 
 if __name__ == "__main__":
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     p2.start()
 
     print("ID del proceso p1: {}".format(p1.pid))
-    print("ID del proceso p2: {}".format(p2.pid))
+    print("ID del proceso p2: {}\n".format(p2.pid))
 
     p1.join()
     p2.join()

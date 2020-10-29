@@ -21,7 +21,7 @@ def calculo_raices(lista_numeros):
 if __name__ == "__main__":
     lista_numeros = [2, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
-    print("Rsultado en el proceso: ")
+    print("Resultado en el proceso: ")
     p1 = multiprocessing.Process(target=calculo_raices, args=(lista_numeros,))
 
     p1.start()
